@@ -1,0 +1,186 @@
+.datagrid table { border-collapse: collapse; text-align: left; width: 100%; } 
+.datagrid {font: normal 12px/150% Arial, Helvetica, sans-serif; background: #fff; overflow: hidden; border: 1px solid #006699; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; }
+.datagrid table td, .datagrid table th { padding: 3px 10px; }
+.datagrid table thead th {background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; color:#ffffff; font-size: 15px; font-weight: bold; border-left: 1px solid #0070A8; } 
+.datagrid table thead th:first-child { border: none; }
+.datagrid table tbody td { color: black; border-left: 1px solid #E1EEF4;font-size: 12px;font-weight: normal; }
+.datagrid table tbody .alt td { background: #E1EEF4; color: #00496B; }
+.datagrid table tbody td:first-child { border-left: none; }
+.datagrid table tbody tr:last-child td { border-bottom: none; }
+.datagrid table tfoot td div { border-top: 1px solid #006699;background: #E1EEF4;} 
+.datagrid table tfoot td { padding: 0; font-size: 12px } .datagrid table tfoot td div{ padding: 2px; }
+.datagrid table tfoot td ul { margin: 0; padding:0; list-style: none; text-align: right; }
+.datagrid table tfoot  li { display: inline; }.datagrid table tfoot li a { text-decoration: none; display: inline-block;  padding: 2px 8px; margin: 1px;color: #FFFFFF;border: 1px solid #006699;-webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #006699), color-stop(1, #00557F) );background:-moz-linear-gradient( center top, #006699 5%, #00557F 100% );filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#006699', endColorstr='#00557F');background-color:#006699; }
+.datagrid table tfoot ul.active, .datagrid table tfoot ul a:hover { text-decoration: none;border-color: #006699; color: #FFFFFF; background: none; background-color:#00557F;}
+div.dhtmlx_window_active, div.dhx_modal_cover_dv { position: fixed !important; }
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+.redClass { 
+    color: red;
+  }
+
+  .yellowClass { 
+    color: yellow;
+  }
+
+  .greenClass { 
+    color: green;
+  }
+  
+ .redBackColor { 
+    background-color: red;
+  }
+
+  .yellowBackColor { 
+    background-color: yellow;
+  }
+
+  .greenBackColor { 
+    background-color: green;
+  }
+  
+  
+.navbar-blue {
+    background-color:#337ab7;
+    border-color: #2e6da4;
+}
+
+.navbar-blue ul li a {
+    color: #fff;
+}
+
+.navbar-blue ul li a:hover {
+    background-color: #2e6da4;
+  }
+  
+  .navbar-blue ul li a:focus {
+  background-color: #1C56AD;
+}
+
+.linkBackColor {
+  background-color: #1C56AD;
+}
+
+.borderClass {
+    border-style: groove;
+}
+
+input[type="radio"] {
+    -ms-transform: scale(2.0); /* IE 9 */
+    -webkit-transform: scale(2.0); /* Chrome, Safari, Opera */
+    transform: scale(2.0);
+    margin: 10px;
+}
+
+.videoSize
+    {
+        width: 100%;
+    }
+
+@media screen and (min-width: 501px) {
+    .menuSmarthPhone{
+        display : none !important; 
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .menuDesktop{
+        display : none !important; 
+    }
+}
+
+.navbar-blue ul li a:focus {
+    background-color: #1C56AD !important;
+}
+
+.dropdown-menu {
+    position: absolute !important;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 160px;
+    padding: 5px 0;
+    margin: 2px 0 0;
+    font-size: 14px;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 4px;
+    -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175);
+    box-shadow: 0 6px 12px rgba(0,0,0,.175);
+}
+
+.horizontalScroll{
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.spaceBetweenTr{
+  margin-bottom: 10px;
+    display: block;
+}
+
+.radioButtonFixed{
+  width:250px; /* or whatever width you want. */
+   max-width:250px; /* or whatever width you want. */
+   display: inline-block;
+}
+/* multiselect property */
+.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+
+.loginLinks{
+  display: flex;
+}
+
+.loginLinks > * {
+  display: flex;
+  min-width: 100px;
+  min-height: 50px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.loginDecorator{
+  text-decoration: underline;
+  color: rgba(0,0,100);
+}
