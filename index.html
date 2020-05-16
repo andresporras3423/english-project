@@ -1,0 +1,394 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <TITLE>ENGLISH PROJECT</TITLE>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+            <link rel="stylesheet" href="index.css">
+            <!-- jQuery library -->
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+            
+    </head>
+    <body>
+        <div id="app" class="col-md-12">
+            <div v-if="!showLogin" >
+                <navbar-component inline-template >
+                    <div>
+                        <div class="col-md-12" id="barNav">
+                <nav class="navbar navbar-blue">
+              <ul class="nav navbar-nav">
+                <li class="active menuDesktop" @click="newTab(0)"><a href="#" v-bind:class="currentTab==0 ? linkBackColor: ''">Words</a></li>
+                <li class="menuDesktop"><a href="#" @click="newTab(1)" v-bind:class="currentTab==1 ? linkBackColor: ''">Tests</a></li>
+                <li class="menuDesktop"><a href="#" @click="newTab(2)" v-bind:class="currentTab==2 ? linkBackColor: ''">History</a></li>
+                <li class="menuDesktop"><a href="#" @click="newTab(3)" v-bind:class="currentTab==3 ? linkBackColor: ''">Videos</a></li>
+                <li class="menuDesktop"><a href="#" @click="newTab(4)" v-bind:class="currentTab==4 ? linkBackColor: ''">Filter</a></li>
+                <li class="menuDesktop"><a href="#" @click="newTab(5)" v-bind:class="currentTab==5 ? linkBackColor: ''">Grammar</a></li>
+                <li class="menuDesktop"><a href="#" @click="exit()">Exit</a></li>
+                <li class="menuSmarthPhone" >
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size: x-large;">menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink"  style="background-color: rgb(46, 109, 164);">
+          <ul style="font-size: x-large;">
+              <li @click="newTab(0)"><a href="#" v-bind:class="currentTab==0 ? linkBackColor: ''">Words</a></li>
+                <li><a href="#" @click="newTab(1)" v-bind:class="currentTab==1 ? linkBackColor: ''">Tests</a></li>
+                <li><a href="#" @click="newTab(2)" v-bind:class="currentTab==2 ? linkBackColor: ''">History</a></li>
+                <li><a href="#" @click="newTab(3)" v-bind:class="currentTab==3 ? linkBackColor: ''">Videos</a></li>
+                <li><a href="#" @click="newTab(4)" v-bind:class="currentTab==4 ? linkBackColor: ''">Filter</a></li>
+                <li><a href="#" @click="newTab(5)" v-bind:class="currentTab==5 ? linkBackColor: ''">Grammar</a></li>
+                <li><a href="#" @click="exit()">Exit</a></li>
+          </ul>
+        </div>
+                </li>
+              </ul>
+          </nav>
+            </div>
+            <div v-if="currentTab==0">
+                <dictionary-component inline-template>
+                <div class="col-md-12" @keyup.enter="createWord()">
+                <div>
+                <div class="col-md-6">
+
+                        <div class="form-group"> <!-- Full Name -->
+                            <label for="word" class="control-label">word</label>
+                            <input type="text"  ref="word" class="form-control" id="word" :disabled="disabled || editing!=-1" v-model="word" name="word" placeholder="teacher">
+                        </div>  
+                        
+                        <div class="form-group"> <!-- Full Name -->
+                            <label for="translation" class="control-label">translation</label>
+                            <input type="text" class="form-control" id="translation" v-model="translation" :disabled="disabled" name="translation" placeholder="profesor">
+                        </div> 
+                    
+                             
+                        
+                        <div class="form-group"> <!-- Submit Button -->
+                            <table class="col-md-12">
+                                <tr class="spaceBetweenTr">
+                                    <td>
+                                        <button  type="submit" @click="createWord()" class="btn btn-primary">save</button>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6 radioButtonFixed"><input name="changeSort" value="saved" type="radio" @click="changeSort(0)" :checked="checked==0">Saved order</div>
+                                            <div class="col-md-6 radioButtonFixed"><input name="changeSort" value="alpha" type="radio" @click="changeSort(1)" :checked="checked==1">Alphabetical order</div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="spaceBetweenTr">
+                                    <td>
+                                        <button  type="submit" @click="clearData()" class="btn btn-primary">clear</button>
+                                    </td>
+                                </tr>
+                                <tr class="spaceBetweenTr">
+                                    <td>
+                                        <button type="submit" @click="searchWords()" class="btn btn-primary">search</button>
+                                        <select class="" id="nQuestions" v-model="tSearch">
+                                    <option value="0" selected>begins</option> 
+                                    <option value="1">ends</option> 
+                                    <option value="2">contains</option>
+                                    <option value="3">exact</option> 
+                                 </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="col-md-12"  v-bind:class="[colorClass[colorOpt]]">{{messageData}}</div>
+                            
+                        </div>     
+                        
+                    </div>
+                <div class="datagrid col-md-6 horizontalScroll">
+                    <table class="col-md-12">
+                        <thead>
+                            <tr>
+                                <th>Word</th><th>watch</th><th>edit</th><th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(p, index) in listWords[currentItem]">
+                            <tr>
+                                <td>{{p.word}}</td>
+                                <td><button type="submit" class="btn btn-primary" @click="readWord(index)"><span class="glyphicon glyphicon-search"></span></button></td>
+                                <td><button type="submit" class="btn btn-primary" @click="updateWord(index)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                                <td><button type="submit" class="btn btn-primary" @click="deleteWord(index)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                            </tr>
+                        </tbody>
+                        
+                        </table>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <button class="col-md-2 btn btn-primary" @click="goFirst()"><span class="glyphicon glyphicon-backward"></span></button>
+                            <button class="col-md-2 btn btn-primary" @click="goBack()"><span class="glyphicon glyphicon-triangle-left"></span></button>
+                            <label class="col-md-4" style="text-align: center; padding: 0px;">
+                                <div class="col-md-12">{{currentItem+1}}/{{completeList.length}}</div>
+                                <div class="col-md-12">{{size}} words</div>
+                                </label>
+                            <button class="col-md-2 btn btn-primary" @click="goNext()"><span class="glyphicon glyphicon-triangle-right"></span></button>
+                            <button class="col-md-2 btn btn-primary" @click="goLast()"><span class="glyphicon glyphicon-forward"></span></button>
+                        </div>
+                    </div>
+        </div>
+            </div>
+            </dictionary-component>
+            </div>
+            <div v-if="currentTab==1">
+                <test-component inline-template>
+                    <div class="col-md-6"  @keydown="keyEvent"  style="font-size: x-large;">
+                        <div class="col-md-12">
+                            <label class="col-md-6">how many?:</label>
+                            <select class="col-md-6" id="nQuestions" v-model="nQuestions" v-on:change="reloadExam()">
+                                    <option value="10">10</option> 
+                                    <option value="20">20</option> 
+                                    <option value="50">50</option>
+                                    <option value="100" selected>100</option> 
+                                    <option value="200">200</option>
+                                    <option value="400">400</option>
+                                 </select>
+                    </div>
+                    <div class="col-md-12" v-if="currentQuestion!=null">
+                        <label class="col-md-12">WORD: {{currentQuestion.word}}</label>
+                        <div class="col-md-12" v-for="(c, index) in currentQuestion.opts">
+                            <input name="solOpt" value="0" type="radio" @click="updateSol(index)" :checked="checked==index" :disabled="checked!=-1"><label v-bind:class="colorOpt(index)" style="font-weight:500;">{{c}}</label></div>
+                    </div>
+                    <div class="col-md-12" v-bind:class="[colorClass[nColor]]">{{currentMessage}}</div>
+                    <div class="col-md-12">
+                        <label class="col-md-6" v-bind:style="{color: activeColor()}">{{correct}} / {{nQuestion}}</label><button class="col-md-6 btn-primary" @click="nextWord()">next</button>
+                    </div>
+                    </div>
+                </test-component>
+            </div>
+            <div v-if="currentTab==2">
+                <history-component inline-template><div class=" col-md-6">
+                    <div>
+                        <label class=" col-md-6" style="font-size: large;">GLOBAL SCORE: </label>
+                        <label class=" col-md-6"  style="font-size: large;" v-bind:style="{'background-color': activeColor(totalCorrects, totalQuestions)}" > {{totalCorrects}} / {{totalQuestions}} ( {{(totalCorrects*100/totalQuestions).toFixed(2)}} %)</label>
+                    </div>
+                    <div  class="datagrid">
+                       <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th><th>Correct questions</th><th>Total Questions</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(t, index) in listTests[currentPage]">
+                            <tr v-bind:style="{'background-color': activeColor(t.correct_questions, t.total_questions)}">
+                                <td>{{t.date_test}}</td>
+                                <td>{{t.correct_questions}}</td>
+                                <td>{{t.total_questions}}</td>
+                            </tr>
+                        </tbody>
+                        
+                        </table>
+                        <div class="col-md-12"  style="padding: 0px;">
+                                <button class="col-md-2 btn btn-primary" @click="goFirst()"><span class="glyphicon glyphicon-backward"></span></button>
+                            <button class="col-md-2 btn btn-primary" @click="goBack()"><span class="glyphicon glyphicon-triangle-left"></span></button>
+                            <label class="col-md-4" style="text-align: center; padding: 0px;">
+                                <div class="col-md-12">{{currentPage+1}}/{{listTests.length}}</div>
+                                <div class="col-md-12">{{totalTests}} tests</div>
+                                </label>
+                            <button class="col-md-2 btn btn-primary" @click="goNext()"><span class="glyphicon glyphicon-triangle-right"></span></button>
+                            <button class="col-md-2 btn btn-primary" @click="goLast()"><span class="glyphicon glyphicon-forward"></span></button>
+                            
+                        </div>
+                    </div>
+                    
+                </div></history-component>
+            </div>
+            <div v-if="currentTab==3">
+                <video-component inline-template >
+                    <div class="col-md-9 col-xs-12">
+                        <video id="myVideo" autoplay="" class="col-md-12 videoSize" controls="" name="media">
+                            <source  v-bind:src="url" type="video/mp4" >
+                       </video>
+                   
+                       <div class="col-md-12" style="padding: 0px;">
+                            <button class="col-md-2 btn btn-primary" @click="changeVideo(-1)">back</button>
+                            <label class="col-md-4" style="text-align: center; padding: 0px;">
+                                <div>Lesson {{number}}</div>
+                                </label>
+                            <button class="col-md-2 btn btn-primary" @click="changeVideo(1)">next</button>
+                        </div>
+                </div>
+                
+                </video-component>
+            </div>  
+            <div v-if="currentTab==4">
+                <list-component inline-template>
+                <div class="col-md-12">
+                <div>
+                <div class="col-md-6">
+
+                        <div class="form-group"> <!-- Full Name -->
+                            <button class="btn-primary"  @click="getRepeated()">{{showRepeated ? 'edit words': 'show repeated'}}</button>
+                            <button class="btn-primary"  @click="delRepeated()">delete repeated</button><br>
+                            <textarea v-show="showRepeated==false" cols="30" rows="20" v-model="completeList"></textarea>
+                            <div  v-show="showRepeated==true">
+                                <div v-for="(h, index) in htmlList">
+                                    <div v-bind:class="h.repeated==1 ? 'redClass': ''">{{h.word}}</div>
+                                </div>
+                                <div style="font-weight: bold;">new words: {{htmlList.length-countRepeated}} ({{((htmlList.length-countRepeated)*100/htmlList.length).toPrecision(4)+'%'}})</div>
+                                    <div style="font-weight: bold;">repeated words: {{countRepeated}} ({{(countRepeated*100/htmlList.length).toPrecision(4)+'%'}})</div style="font-weight: bold;">
+                            </div>
+                            
+
+                        </div>  
+                    </div>
+        </div>
+            </div>
+            </list-component>
+            </div> 
+            <div v-if="currentTab==5">
+                <grammar-component inline-template>
+                <div class="col-md-12" @keyup.enter="createTopic()">
+                <div>
+                <div class="col-md-6">
+
+                        <div class="form-group"> <!-- Full Name -->
+                            <label for="topic" class="control-label">Topic</label>
+                            <input type="text"  ref="topic" class="form-control" id="topic" :disabled="disabled || editing!=-1" v-model="topic" name="topic" placeholder="here topic">
+                        </div> 
+                        <div class="form-group"> <!-- Full Name -->
+                            <label for="level" class="control-label">Level</label>
+                            <select class="" id="tLevel" v-model="topicLevel" :disabled="disabled">
+                                <option value="3">B1</option> 
+                                <option value="4">B2</option>
+                                <option value="5">C1</option> 
+                             </select>
+                        </div>
+                        <div class="form-group"> <!-- Full Name -->
+                            <label for="link" class="control-label">Link</label>
+                            <input type="text" class="form-control" id="link" v-model="link" :disabled="disabled" name="link" placeholder="https://www.link-here.com">
+                        </div> 
+                    
+                             
+                        
+                        <div class="form-group"> <!-- Submit Button -->
+                            <table class="col-md-12">
+                                <tr class="spaceBetweenTr">
+                                    <td>
+                                        <button  type="submit" @click="createTopic()" class="btn btn-primary">save</button>
+                                    </td>
+                                    <td>
+                                        <div class="col-md-12">
+                                            <div class="col-md-6 radioButtonFixed"><input name="changeSort" value="saved" type="radio" @click="changeSort(0)" :checked="checked==0">Saved order</div>
+                                            <div class="col-md-6 radioButtonFixed"><input name="changeSort" value="alpha" type="radio" @click="changeSort(1)" :checked="checked==1">Alphabetical order</div>
+                                        </div>
+                                    </td>
+                                    
+                                </tr>
+                                <tr  class="spaceBetweenTr">
+                                    <td>
+                                        <button  type="submit" @click="clearData()" class="btn btn-primary">clear</button>
+                                    </td>
+                                </tr>
+                                <tr  class="spaceBetweenTr">
+                                    <td>
+                                        <button type="submit" @click="searchTopics()" class="btn btn-primary">search</button>
+                                        <select class="" id="nQuestions" v-model="tSearch">
+                                    <option value="0" selected>begins</option> 
+                                    <option value="1">ends</option> 
+                                    <option value="2">contains</option>
+                                    <option value="3">exact</option> 
+                                 </select>
+                                    </td>
+                                </tr>
+                                <tr  class="spaceBetweenTr">
+                                    <td class="col-xs-12" style="padding:0px;">
+                                        <button  type="submit" @click="randomTopics()" class="btn btn-primary col-xs-4" style="width:70px; margin-right:5px;">random</button>
+                                        <input type="number" name="quantity" v-model="quantity" min="1" style="width:80px; margin-right:5px;" class="col-xs-4">
+                                        <form class="col-xs-4">
+                                            <ul style="padding: 10px">
+                                                <li v-for="(lvl, index) in listLevel" ><p><input type="checkbox" value="lvl.index" @click="updateListRandom(index)"> {{lvl.name}}</p></li>
+                                            </ul>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="col-md-12"  v-bind:class="[colorClass[colorOpt]]">{{messageData}}</div>
+                            
+                        </div>     
+                        
+                    </div>
+                <div class="datagrid col-md-6 horizontalScroll">
+                    <table class="col-md-12">
+                        <thead>
+                            <tr>
+                                <th>Topic</th><th>link</th><th>watch</th><th>edit</th><th>delete</th>
+                            </tr>
+                        </thead>
+                        <tbody v-for="(p, index) in listTopics[currentItem]">
+                            <tr>
+                                <td>{{p.topic}}</td>
+                                <td><a target="_blank" class="btn btn-primary" :href="p.link"><span class="glyphicon glyphicon-link"></span></a></td>
+                                <td><button type="submit" class="btn btn-primary" @click="readTopic(index)"><span class="glyphicon glyphicon-search"></span></button></td>
+                                <td><button type="submit" class="btn btn-primary" @click="updateTopic(index)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+                                <td><button type="submit" class="btn btn-primary" @click="deleteTopic(index)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                            </tr>
+                        </tbody>
+                        
+                        </table>
+                        <div class="col-md-12" style="padding: 0px;">
+                            <button class="col-md-2 btn btn-primary" @click="goFirst()"><span class="glyphicon glyphicon-backward"></span></button>
+                            <button class="col-md-2 btn btn-primary" @click="goBack()"><span class="glyphicon glyphicon-triangle-left"></span></button>
+                            <label class="col-md-4" style="text-align: center; padding: 0px;">
+                                <div class="col-md-12">{{currentItem+1}}/{{completeList.length}}</div>
+                                <div class="col-md-12">{{size}} topics</div>
+                                </label>
+                            <button class="col-md-2 btn btn-primary" @click="goNext()"><span class="glyphicon glyphicon-triangle-right"></span></button>
+                            <button class="col-md-2 btn btn-primary" @click="goLast()"><span class="glyphicon glyphicon-forward"></span></button>
+                        </div>
+                    </div>
+        </div>
+            </div>
+            </grammar-component>
+            </div>         
+                        
+                        
+                    </div>
+                    
+                
+            </navbar-component>
+            </div>
+            <div  v-if="showLogin">
+                <login-component inline-template>
+                    <div class="col-md-12">
+                        <div class="loginLinks">
+                            <a  v-bind:class="loginTab==0 ? loginDecorator: ''" v-on:click="updateLink(0)">Login</a>
+                            <a  v-bind:class="loginTab==1 ? loginDecorator: ''" v-on:click="updateLink(1)">Sign Up</a>
+                        </div>
+                <div v-if="currentView" class="col-md-4 col-centered" >
+                    <div class="col-md-6" v-if="loginTab==1"><label>name</label></div>
+                    <div class="col-md-6" v-if="loginTab==1"><input class="form-control" type="text" v-model="name"></div>
+                    <div class="col-md-6"><label>email</label></div>
+                    <div class="col-md-6"><input  class="form-control" type="text" v-model="mail"></div>
+                    <div class="col-md-6"><label>password</label></div>
+                    <div class="col-md-6"><input class="form-control" type="password" v-model="pass"></div>
+                    <div class="col-md-6" v-if="loginTab==1"><label>password confirmation</label></div>
+                    <div class="col-md-6" v-if="loginTab==1"><input class="form-control" type="password" v-model="passConfirm"></div>
+                    <div class="col-md-12"><button class="form-control"  v-on:click="login()">{{loginTab==0 ? 'Login': 'Sign Up'}}</button></div>
+                    <div class="col-md-12" v-show="visibleMessage" v-bind:class="[colorClass[colorOpt]]">{{message}}</div>
+                </div>
+                
+            </div>
+                
+            
+            </login-component>
+            </div>
+            
+            
+            
+            
+        </div>
+        
+          <div style="padding:10px;">This is a website developed by Oscar Andrés Russi Porras</div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script  src="index.js" type="module"></script>
+       
+    <script>
+    //$(document).ready(function () {
+      //  $("div[data-includeHTML]").each(function () {                
+        //    $(this).load($(this).attr("data-includeHTML"));
+        //});
+    //});
+</script>
+    </body>
+</html>
