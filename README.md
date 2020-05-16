@@ -31,7 +31,11 @@ HISTORY TAB:
 ![screenshot](/images/history.png)
 - you can see the list of your tests
 - you can see total of tests, total of questions and average score
-
+VIDEOS:
+![screenshot](/images/videos.png)
+- check a list of video from "perfectly spoken" website
+- you have a total of 60 videos
+- for now this videos are just for the B2 level course
 
 ## Built With
 
