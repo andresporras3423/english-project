@@ -11,24 +11,27 @@ This project contains a list of useful resources to improve your english. It was
 5) add links for grammar topics
 6) filter words
 
-![screenshot](./screenshot.png)
-
-# enumerable-module-ruby test
-
-Eight Microverse project for Ruby Course
+![screenshot](/images/screenshot.png)
 
 # What it does
 
-- I have created a bot in telegram
-- This bot give info about temperature
-- it can use the city name, coordinates (latitude and longitude), or zip code to get the information
-- if the user shares his location bot will give him /her an update of the temperature in the city using an interval of time.
-- By default the interval is 60 seconds but can be modified using /interval message
-- to learn more about how to use the bot type /start and /tutorial
-- To make the project work in another environment is necessary to install three gems, to do it run:
-* gem install telegram-bot-ruby
-* gem install openweather2
-* gem install geocoder
+- First of all, login signup with name, email, password and password confirmation
+- Once you are logged you will find different resources in each tab. 
+WORDS TAB:
+![screenshot](/images/words.png)
+- here you can add a word and it's translation
+- you can edit, delete and watch each word
+- you can filter words with "search button"
+TESTS TAB:
+![screenshot](/images/tests.png)
+- practice your memory of the words
+- choose a number of questions
+- select the right translation between 4 options
+HISTORY TAB:
+![screenshot](/images/history.png)
+- you can see the list of your tests
+- you can see total of tests, total of questions and average score
+
 
 ## Built With
 
