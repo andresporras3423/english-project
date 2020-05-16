@@ -17,21 +17,21 @@ This project contains a list of useful resources to improve your english. It was
 
 - First of all, login signup with name, email, password and password confirmation
 - Once you are logged you will find different resources in each tab. 
-WORDS TAB:
+* WORDS TAB:
 ![screenshot](/images/words.png)
 - here you can add a word and it's translation
 - you can edit, delete and watch each word
 - you can filter words with "search button"
-TESTS TAB:
+* TESTS TAB:
 ![screenshot](/images/tests.png)
 - practice your memory of the words
 - choose a number of questions
 - select the right translation between 4 options
-HISTORY TAB:
+* HISTORY TAB:
 ![screenshot](/images/history.png)
 - you can see the list of your tests
 - you can see total of tests, total of questions and average score
-VIDEOS:
+* VIDEOS:
 ![screenshot](/images/videos.png)
 - check a list of video from "perfectly spoken" website
 - you have a total of 60 videos
