@@ -61,11 +61,11 @@ This project contains a list of useful resources to improve your english. It was
 
 ## Running tests
 
-
+https://github.com/andresporras3423/english-project/issues
 
 ## Planned Features
 
-
+https://github.com/andresporras3423/english-project/issues
 
 ## Live Demo
 
@@ -73,9 +73,9 @@ This project contains a list of useful resources to improve your english. It was
 
 ## Project Presentation (VIDEO)
 
-[![Project presentation](./video-screenshot.png)](https://www.loom.com/share/6a5bd2ea817a439f958324f69bdd58bc)
+[![Project presentation](/images/video-screenshot.png)](https://www.loom.com/share/4afd676540094eee80469b32158a92d1)
 
-[Project Presentation](https://www.loom.com/share/6a5bd2ea817a439f958324f69bdd58bc)
+[Project Presentation](https://www.loom.com/share/4afd676540094eee80469b32158a92d1)
 
 
 ## Authors
