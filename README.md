@@ -73,9 +73,9 @@ https://github.com/andresporras3423/english-project/issues
 
 ## Project Presentation (VIDEO)
 
-[![Project presentation](/images/video-screenshot.png)](https://www.loom.com/share/4afd676540094eee80469b32158a92d1)
+[![Project presentation](/images/video-screenshot.png)](https://www.loom.com/share/e7f505da9a984ff080700e31a5e11fd4)
 
-[Project Presentation](https://www.loom.com/share/4afd676540094eee80469b32158a92d1)
+[Project Presentation](https://www.loom.com/share/e7f505da9a984ff080700e31a5e11fd4)
 
 
 ## Authors
