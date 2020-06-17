@@ -1,6 +1,6 @@
 # English-project
 
-This project contains a list of useful resources to improve your english. It was thought for people with a A2 level or above.
+This project contains a list of useful resources to improve your english.  It was thought for people with a A2 level or above. You can change it to: It's for people with a A2 level or above.
 
 
 # What it does
@@ -14,7 +14,7 @@ This project contains a list of useful resources to improve your english. It was
 - You can filter words with "search button".
 ### TESTS TAB:
 ![screenshot](/images/tests.png)
--Practice your memory of the words.
+- Practice your memory of the words.
 - Choose a number of questions.
 - Select the right translation between 4 options.
 ### HISTORY TAB:
@@ -41,7 +41,7 @@ This project contains a list of useful resources to improve your english. It was
 ## Built With
 
 - Vue.js Framework.
-- javaScript.
+- JavaScript.
 - HTML/CSS.
 - PHP.
 - MySQL.
